@@ -1,15 +1,75 @@
-import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
+import React, {useEffect, useState} from "react";
 import "../../styles/home.css";
+import {Characters} from "../component/characters.js";
+//import {Planets} from "../component/planets.js";
+//import {Vehiculos} from "../component/vehiculos.js";
 
-export const Home = () => (
-	<div className="text-center mt-5">
-		<h1>Hello Rigo!</h1>
-		<p>
-			<img src={rigoImage} />
-		</p>
-		<a href="#" className="btn btn-success">
-			If you see this green button, bootstrap is working
-		</a>
+export const Home = () => {
+	
+//Personajes
+	const [personajes, setPersonajes]= useState([])
+
+	function obtenerPersonajes() {
+        fetch("https://swapi.dev/api/people/")
+        .then(res => res.json())
+        .then(data => setPersonajes(data.results))
+        .catch(err => console.error(err))
+    }
+	console.log(personajes);
+
+    
+    useEffect(() => {
+        obtenerPersonajes();
+	}, [])
+	
+	console.log(personajes);
+
+	return (
+	<>
+	<div>
+		<div className="d-flex justify content center mx-5 my-2 overflow-auto">
+		{personajes.map((item, index)=><Characters key={index} id={index +1} nombre={item.name} genero={item.gender} pelo={item.hair_color} ojos={item.eye_color}/>)}
 	</div>
-);
+    </div>
+	</>
+    )
+}
+
+/*	//Planetas
+	const [planetas, setPlanetas]= useState([])
+
+	function obtenerPlanetas() {
+        fetch("https://www.swapi.tech/api/people/")
+        .then(res => res.json())
+        .then(data => setPlanetas(data.results))
+        .catch(err => console.error(err))
+    }
+
+	//Vehiculos
+	const [vehiculos, setVehiculos]= useState([])
+
+	function obtenerVehiculos() {
+        fetch("https://www.swapi.tech/api/people/")
+        .then(res => res.json())
+        .then(data => setVehiculos(data.results))
+        .catch(err => console.error(err))
+    }*/
+
+/*    <div className="d-flex justify content center mx-5 my-3">
+        <h1 className="text-danger">Planetas</h1>
+    </div>
+    <div className="d-flex justify content center mx-5 my-2 overflow-auto">
+        <Planets/>
+    </div>
+    <div className="d-flex justify content center mx-5 my-3">
+        <h1 className="text-danger">Vehiculos</h1>
+    </div>
+    <div className="d-flex justify content center mx-5 my-2 overflow-auto">
+        <Vehiculos/>
+    </div>
+	
+	
+	    <div className="d-flex justify content center mx-5">
+	{personajes.map((item)=><Characters nombre={item.nombre} gender={item.gender}/>)}
+        <h1 className="text-danger">Characters</h1></div>
+    <div className="d-flex justify content center mx-5 my-2 overflow-auto"></div>*/
