@@ -15,7 +15,10 @@ export const Characters = (props) => {
                 <p className="card-text">Hair color: {props.pelo}</p>
                 <p className="card-text">Eye color: {props.ojos}</p>
                 <Link to={"/single/"+ props.id} className="btn btn-primary">Learn More</Link>
-                <a href="#" className="fa fa-heart btn ms-5 text-dark border border-danger"></a>
+                {/* <a href="#" className="fa fa-heart btn ms-5 text-dark border border-danger"></a> */}
+                {/* <button className="btn bg-warning text-dark border border-0 mt-3" onClick={()=>actions.agregarFavorito(nombrePersonaje)}>
+          <i className="fa fa-heart"> </i> */}
+          {/* </button> */}
             </div>
         </div>
         </div>

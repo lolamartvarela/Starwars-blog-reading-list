@@ -8,7 +8,6 @@ export const Single = props => {
 	const { store, actions } = useContext(Context);
 	const [detallePersonaje, setDetallePersonaje]=useState({})
 	const params = useParams();
-	console.log(params)
                                                     
 	function infoPersonajes(){       
 		fetch("https://swapi.dev/api/people/"+params.theid)   

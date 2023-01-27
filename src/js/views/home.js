@@ -14,6 +14,7 @@ export const Home = () => {
 
 	return (
 	<>
+    <div>
 	<div>
     <div className="d-flex justify content center mx-5 my-3">
         <h1 className="text-danger">Characters</h1></div>
@@ -29,6 +30,15 @@ export const Home = () => {
 		{store.planetas.map((item, index)=><Planets key={index} id={index +1} nombreplaneta={item.name} poblacion={item.population
 } terreno={item.terrain} clima={item.climate} Orbitalperiod={item.orbital_period}  Rotationperiod={item.rotation_period} Diameter={item.diameter}/>)}
 	</div>
+    </div>
+
+    <div>
+    <div className="d-flex justify content center mx-5 my-3">
+        <h1 className="text-danger">Vehicles</h1></div>
+		<div className="d-flex justify content center mx-5 my-2 overflow-auto">
+		{store.vehiculos.map((item, index)=><Vehicles key={index} id={index} modelovehiculo={item.model} manufactura={item.manufacturer} clase={item.class} costo={item.cost} velocidad={item.speed}  largo={item.length} carga={item.cargo_capacity} tripulacion={item.mimimum_crew} pasajeros={item.passengers}/>)}
+	</div>
+    </div>
     </div>
 	</>
     )

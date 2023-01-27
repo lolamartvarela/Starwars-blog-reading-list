@@ -7,13 +7,19 @@ const getState = ({
         store: {
             personajes: [],
             planetas: [],
+            vehiculos: [],
+            detallePersonje: {},
             detallePlaneta: {},
+            detalleVehiculo: {},
+            favoritos: [],
+
         },
         actions: {
 
             exampleFunction: () => {
                 getActions().changeColor(0, "green");
             },
+
             obtenerPersonajes: () => {
                 fetch("https://swapi.dev/api/people/")
                     .then(res => res.json())
@@ -32,6 +38,26 @@ const getState = ({
                     .catch(err => console.error(err))
             },
 
+            obtenerVehiculos: () => {
+                fetch("https://swapi.dev/api/vehicles/")
+                    .then(res => res.json())
+                    .then(data => setStore({
+                        vehiculos: data.results
+                    }))
+                    .catch(err => console.error(err))
+            },
+
+            InfoPersonaje: (id) => {
+
+                fetch("https://swapi.dev/api/characters/" + id)
+                    .then((res) => res.json())
+                    .then((data) => setStore({
+                        detallePersonaje: data
+                    }))
+                    .catch((err) => console.error(err));
+            },
+            loadSomeData: () => {},
+
             InfoPlaneta: (id) => {
 
                 fetch("https://swapi.dev/api/planets/" + id)
@@ -41,10 +67,39 @@ const getState = ({
                     }))
                     .catch((err) => console.error(err));
             },
+            loadSomeData: () => {},
+
+            InfoVehiculo: (id) => {
+
+                fetch("https://swapi.dev/api/vehicles/" + id)
+                    .then((res) => res.json())
+                    .then((data) => setStore({
+                        detalleVehiculo: data
+                    }))
+                    .catch((err) => console.error(err));
+            },
+            loadSomeData: () => {},
+
+            agregarFavorito: (favoritos) => {
+                let store = getStore();
+                if (favoritos !== "" && !store.favoritos.includes(favoritos))
+                    setStore ({
+                        favoritos: [...store.favoritos, favoritos]
+                    })
+            },
+
+            borrarFavorito: (favoritos) => {
+                let store = getStore();
+                setStore({
+                    favoritos: store.favoritos.filter((fav) => fav !== favoritos)
+                })
+            },
+
             loadSomeData: () => {
 
-
             },
+
+
             changeColor: (index, color) => {
 
                 const store = getStore();
@@ -59,7 +114,7 @@ const getState = ({
                 setStore({
                     demo: demo
                 });
-            }
+            },
         }
     };
 };
