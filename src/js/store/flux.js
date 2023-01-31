@@ -3,6 +3,7 @@ const getState = ({
     getActions,
     setStore
 }) => {
+
     return {
         store: {
             personajes: [],
@@ -20,7 +21,7 @@ const getState = ({
                 getActions().changeColor(0, "green");
             },
 
-            obtenerPersonajes: () => {
+            obtenerInfoPersonajes: () => {
                 fetch("https://swapi.dev/api/people/")
                     .then(res => res.json())
                     .then(data => setStore({
@@ -29,7 +30,7 @@ const getState = ({
                     .catch(err => console.error(err))
             },
 
-            obtenerPlanetas: () => {
+            obtenerInfoPlanetas: () => {
                 fetch("https://swapi.dev/api/planets/")
                     .then(res => res.json())
                     .then(data => setStore({
@@ -38,7 +39,7 @@ const getState = ({
                     .catch(err => console.error(err))
             },
 
-            obtenerVehiculos: () => {
+            obtenerInfoVehiculos: () => {
                 fetch("https://swapi.dev/api/vehicles/")
                     .then(res => res.json())
                     .then(data => setStore({
@@ -47,9 +48,9 @@ const getState = ({
                     .catch(err => console.error(err))
             },
 
-            InfoPersonaje: (id) => {
+            obtenerDetallePersonaje: (id) => {
 
-                fetch("https://swapi.dev/api/characters/" + id)
+                fetch("https://swapi.dev/api/people/" + id)
                     .then((res) => res.json())
                     .then((data) => setStore({
                         detallePersonaje: data
@@ -58,7 +59,7 @@ const getState = ({
             },
             loadSomeData: () => {},
 
-            InfoPlaneta: (id) => {
+            obtenerDetallePlaneta: (id) => {
 
                 fetch("https://swapi.dev/api/planets/" + id)
                     .then((res) => res.json())
@@ -69,7 +70,7 @@ const getState = ({
             },
             loadSomeData: () => {},
 
-            InfoVehiculo: (id) => {
+            obtenerDetalleVehiculo: (id) => {
 
                 fetch("https://swapi.dev/api/vehicles/" + id)
                     .then((res) => res.json())
@@ -83,7 +84,7 @@ const getState = ({
             agregarFavorito: (favoritos) => {
                 let store = getStore();
                 if (favoritos !== "" && !store.favoritos.includes(favoritos))
-                    setStore ({
+                    setStore({
                         favoritos: [...store.favoritos, favoritos]
                     })
             },

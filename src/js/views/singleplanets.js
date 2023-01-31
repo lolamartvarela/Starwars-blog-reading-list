@@ -3,24 +3,23 @@ import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export const Singleplanets = (props) => {
+export const Singleplanets = () => {
     const { store, actions } = useContext(Context);
-    
     const params = useParams();
-    console.log(params);
-  
+      
     useEffect(() => {
-    actions.InfoPlaneta(params.theid);
+    actions.obtenerDetallesPlaneta(params.theid);
     }, []);
+
     return (
       <>
         <div className="container mt-2 mb-2">
           <div className="jumbotron">
             
           <div className="d-flex flex-row">
-       <img className="card-img-top" src={"https://starwars-visualguide.com/assets/img/planets/"+ params.theid + ".jpg"}    alt="Card image cap"></img>
+       <img className="card-img-top" src={"https://starwars-visualguide.com/assets/img/planets/"+ (params.theid) + ".jpg"}    alt="Card image cap"></img>
       <div className="card-body">
-        <h1 className="mx-4 mb-2 card-title text-center">{store.detallePlaneta.name}</h1>
+        <h1 className="mx-4 mb-2 card-title text-center">{store.obtenerDetallesPlaneta.name}</h1>
         <p className="mx-4 card-text text-center">Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora inci dunt, ut labore et dolore magnam aliquam quaerat voluptatem.</p>
       </div>
      </div>
@@ -36,12 +35,12 @@ export const Singleplanets = (props) => {
             <h6 className="col-3">Diameter</h6>
           </div>
           <div className="mb-5 container d-flex justify-content-between font-weight-light text-danger">
-            <h6 className="col-3">{store.detallePlaneta.name}</h6>
-            <h6 className="col-3">{store.detallePlaneta.climate}</h6>
-            <h6 className="col-3">{store.detallePlaneta.population}</h6>
-            <h6 className="col-3">{store.detallePlaneta.orbital_period}</h6>
-            <h6 className="col-3">{store.detallePlaneta.rotation_period}</h6>
-            <h6 className="col-3">{store.detallePlaneta.diameter}</h6> 
+            <h6 className="col-3">{store.obtenerDetallesPlaneta.name}</h6>
+            <h6 className="col-3">{store.obtenerDetallesPlaneta.climate}</h6>
+            <h6 className="col-3">{store.obtenerDetallesPlaneta.population}</h6>
+            <h6 className="col-3">{store.obtenerDetallesPlaneta.orbital_period}</h6>
+            <h6 className="col-3">{store.obtenerDetallesPlaneta.rotation_period}</h6>
+            <h6 className="col-3">{store.obtenerDetallesPlaneta.diameter}</h6> 
           </div>
           <Link to="/"><span className="btn btn-primary btn-lg" href="#" role="button">Back home</span>
             </Link>

@@ -31,7 +31,7 @@ const Layout = () => {
 						<Route path="/singlevehicle/:theid" element={<Singlevehicles/>} />
 						
 					</Routes>
-					
+					<Footer/>
 				</ScrollToTop>
 			</BrowserRouter>
 		</div>
